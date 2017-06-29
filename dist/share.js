@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6,15 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require('react');
+var _react = require("react");
 
 var _react2 = _interopRequireDefault(_react);
 
-var _propTypes = require('prop-types');
+var _propTypes = require("prop-types");
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _utils = require('./utils');
+var _utils = require("./utils");
 
 var _utils2 = _interopRequireDefault(_utils);
 
@@ -36,31 +36,33 @@ var Share = function (_React$Component) {
   }
 
   _createClass(Share, [{
-    key: 'componentDidMount',
+    key: "componentDidMount",
     value: function componentDidMount() {
       this.componentDidUpdate();
     }
   }, {
-    key: 'componentDidUpdate',
+    key: "componentDidUpdate",
     value: function componentDidUpdate() {
       _utils2.default.loadButtons();
     }
   }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       var _props = this.props,
           style = _props.style,
           className = _props.className,
-          locale = _props.locale;
+          locale = _props.locale,
+          type = _props.type;
 
       var url = _utils2.default.fixUrl(this.props.url);
 
-      return _react2.default.createElement('div', {
-        style: Object.assign({}, { display: 'none' }, style),
-        className: 'line-it-button' + (className ? '' : ' ' + className),
-        'data-lang': _utils2.default.localeToLang(locale),
-        'data-type': 'share-a',
-        'data-url': url });
+      return _react2.default.createElement("div", {
+        style: Object.assign({}, { display: "none" }, style),
+        className: "line-it-button" + (className ? "" : " " + className),
+        "data-lang": _utils2.default.localeToLang(locale),
+        "data-type": "share-" + type,
+        "data-url": url
+      });
     }
   }]);
 
@@ -70,12 +72,14 @@ var Share = function (_React$Component) {
 Share.propTypes = {
   style: _propTypes2.default.object,
   className: _propTypes2.default.string,
-  locale: _propTypes2.default.oneOf(['en', 'ja', 'zh-TW', 'th', 'id']),
+  locale: _propTypes2.default.oneOf(["en", "ja", "zh-TW", "th", "id"]),
+  type: _propTypes2.default.oneOf(["a", "b", "c", "d", "e"]),
   url: _propTypes2.default.string
 };
 
 Share.defaultProps = {
-  locale: 'zh-TW'
+  locale: "zh-TW",
+  type: "c"
 };
 
 exports.default = Share;
